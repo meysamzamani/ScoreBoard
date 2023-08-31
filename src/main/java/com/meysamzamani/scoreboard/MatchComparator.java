@@ -13,8 +13,8 @@ public class MatchComparator implements Comparator<Match> {
             return 0;
         } else {
             return Integer.compare(
-                    o2.getHomeScore() + o2.getAwayScore(),
-                    o1.getHomeScore() + o1.getAwayScore()
+                    o1.getHomeScore() + o1.getAwayScore(),
+                    o2.getHomeScore() + o2.getAwayScore()
             );
         }
 

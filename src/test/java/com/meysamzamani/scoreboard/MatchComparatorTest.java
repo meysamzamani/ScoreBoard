@@ -38,4 +38,12 @@ class MatchComparatorTest {
         assertEquals("Compared object should be not null", thrown.getMessage());
     }
 
+    @Test
+    @DisplayName("Given higher score, when compared, then should greater than zero")
+    public void givenMatches_whenUpdatedScoreAndCompared_thenShouldGreaterThanZero() {
+        match1.updateScore(3, 2);
+        match2.updateScore(2, 1);
+        assertTrue(comparator.compare(match1, match2) > 0);
+    }
+
 }
