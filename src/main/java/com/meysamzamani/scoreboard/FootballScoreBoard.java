@@ -29,7 +29,7 @@ public class FootballScoreBoard implements ScoreBoard {
 
     @Override
     public void finishMatch(int matchId) {
-
+        matches.remove(matchId);
     }
 
     @Override

@@ -31,11 +31,16 @@ class FootballScoreBoardTest {
 
     @Test
     @DisplayName("Given match, when score updated, then doesn't throw any exception")
-    void givenMatch_whenUpdateScore_thenShouldScoreEqualExpected() {
+    void givenMatch_whenUpdateScore_thenDoesNotThrowException() {
         int matchId = scoreBoard.startMatch(homeTeam, awayTeam);
         assertDoesNotThrow(() -> scoreBoard.updateScore(matchId, 2, 1));
     }
 
-
+    @Test
+    @DisplayName("Given match, when finished match, then doesn't throw any exception")
+    void givenMatch_whenFinishMatch_thenDoesNotThrowException() {
+        int matchId = scoreBoard.startMatch(homeTeam, awayTeam);
+        assertDoesNotThrow(() -> scoreBoard.finishMatch(matchId));
+    }
 
 }
