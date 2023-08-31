@@ -45,7 +45,7 @@ class MatchTest {
 
     @Test
     @DisplayName("Once the match score is updated by maximum possible, the scores must be correct")
-    public void givenMaximumScore_whenUpdateScore_thenScoreShouldBeEqualExpected() {
+    void givenMaximumScore_whenUpdateScore_thenScoreShouldBeEqualExpected() {
         match.updateScore(Integer.MAX_VALUE, Integer.MAX_VALUE);
         assertEquals(Integer.MAX_VALUE, match.getHomeScore());
         assertEquals(Integer.MAX_VALUE, match.getAwayScore());
@@ -53,7 +53,7 @@ class MatchTest {
 
     @Test
     @DisplayName("Once the match score is updated by negative number, the scores must be dont change")
-    public void givenNegativeScore_whenUpdateScore_thenScoreShouldNotChange() {
+    void givenNegativeScore_whenUpdateScore_thenScoreShouldNotChange() {
         match.updateScore(-1, -10);
         assertEquals(0, match.getHomeScore());
         assertEquals(0, match.getAwayScore());
