@@ -33,7 +33,9 @@ public class Match {
     }
 
     public void updateScore(int homeScore, int awayScore) {
-        this.homeScore = homeScore;
-        this.awayScore = awayScore;
+        if (homeScore >= 0 && awayScore >= 0) {
+            this.homeScore = homeScore;
+            this.awayScore = awayScore;
+        }
     }
 }
