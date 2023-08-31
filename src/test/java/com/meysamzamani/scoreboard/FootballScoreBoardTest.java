@@ -43,4 +43,10 @@ class FootballScoreBoardTest {
         assertDoesNotThrow(() -> scoreBoard.finishMatch(matchId));
     }
 
+    @Test
+    @DisplayName("Given match, when get summary of matches, then should be not null")
+    void givenMatch_whenGetSummaryOfMatches_thenShouldBeNotNull() {
+        assertNotNull(scoreBoard.getSummaryOfMatches());
+    }
+
 }

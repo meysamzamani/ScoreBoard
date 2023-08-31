@@ -1,5 +1,6 @@
 package com.meysamzamani.scoreboard;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,6 +35,7 @@ public class FootballScoreBoard implements ScoreBoard {
 
     @Override
     public List<Match> getSummaryOfMatches() {
-        return null;
+        List<Match> orderedMatches = new ArrayList<>(matches.values());
+        return orderedMatches;
     }
 }
