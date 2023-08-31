@@ -12,10 +12,14 @@ public class MatchComparator implements Comparator<Match> {
         } else if (o1 == o2) {
             return 0;
         } else {
-            return Integer.compare(
+            int scoreComparison = Integer.compare(
                     o1.getHomeScore() + o1.getAwayScore(),
                     o2.getHomeScore() + o2.getAwayScore()
             );
+            if (scoreComparison == 0) {
+                return Integer.compare(o1.hashCode(), o2.hashCode());
+            }
+            return scoreComparison;
         }
 
     }

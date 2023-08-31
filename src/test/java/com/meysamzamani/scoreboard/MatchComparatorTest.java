@@ -40,10 +40,18 @@ class MatchComparatorTest {
 
     @Test
     @DisplayName("Given higher score, when compared, then should greater than zero")
-    public void givenMatches_whenUpdatedScoreAndCompared_thenShouldGreaterThanZero() {
+    void givenMatches_whenUpdatedScoreAndCompared_thenShouldGreaterThanZero() {
         match1.updateScore(3, 2);
         match2.updateScore(2, 1);
         assertTrue(comparator.compare(match1, match2) > 0);
+    }
+
+    @Test
+    @DisplayName("Given matches, when score is equal and compared, then should return less than zero")
+    void givenEqualScores_whenCompared_thenShouldLessThanZeroBecauseOfRecentlyOrder() {
+        match1.updateScore(2, 2);
+        match2.updateScore(2, 2);
+        assertTrue(comparator.compare(match1, match2) < 0);
     }
 
 }
