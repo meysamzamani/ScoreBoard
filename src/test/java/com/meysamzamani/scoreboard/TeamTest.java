@@ -17,7 +17,7 @@ class TeamTest {
     }
 
     @Test
-    @DisplayName("Team's name when is null then NullPointerException should thrown")
+    @DisplayName("Team's name when is null then IllegalArgumentException should thrown")
     void givenNullName_whenCreateNewTeam_thenShouldIllegalArgumentExceptionThrown() {
         IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> {
             Team team = new Team(null);

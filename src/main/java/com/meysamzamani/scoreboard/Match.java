@@ -8,8 +8,12 @@ public class Match {
     private int awayScore;
 
     public Match(Team homeTeam, Team awayTeam) {
-        this.homeTeam = homeTeam;
-        this.awayTeam = awayTeam;
+        if (homeTeam != null || awayTeam != null) {
+            this.homeTeam = homeTeam;
+            this.awayTeam = awayTeam;
+        } else {
+            throw new IllegalArgumentException("Both team should be not nul");
+        }
     }
 
     public Team getHomeTeam() {
@@ -26,5 +30,10 @@ public class Match {
 
     public int getAwayScore() {
         return awayScore;
+    }
+
+    public void updateScore(int homeScore, int awayScore) {
+        this.homeScore = homeScore;
+        this.awayScore = awayScore;
     }
 }
