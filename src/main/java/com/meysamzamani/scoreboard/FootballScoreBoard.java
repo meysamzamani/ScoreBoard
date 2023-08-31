@@ -21,7 +21,10 @@ public class FootballScoreBoard implements ScoreBoard {
 
     @Override
     public void updateScore(int matchId, int homeScore, int awayScore) {
-
+        Match match = matches.get(matchId);
+        if (match != null) {
+            match.updateScore(homeScore, awayScore);
+        }
     }
 
     @Override
