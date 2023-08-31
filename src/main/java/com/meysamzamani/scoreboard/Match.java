@@ -52,13 +52,15 @@ public class Match implements Comparable<Match> {
         } else if (this == o) {
             return 0;
         } else {
-            int scoreComparison = Long.compare(
-                    o.getHomeScore() + o.getAwayScore(),
-                    this.getHomeScore() + this.getAwayScore()
-            );
+            long sumScore1 = (long) o.getHomeScore() + o.getAwayScore();
+            long sumScore2 = (long) this.getHomeScore() + this.getAwayScore();
+
+            int scoreComparison = Long.compare(sumScore1 , sumScore2);
+
             if (scoreComparison == 0) {
                 return Integer.compare(o.getId(), this.getId());
             }
+
             return scoreComparison;
         }
     }

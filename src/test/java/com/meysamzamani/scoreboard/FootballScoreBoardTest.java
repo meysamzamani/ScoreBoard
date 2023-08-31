@@ -84,4 +84,42 @@ class FootballScoreBoardTest {
                 () -> assertEquals(2, orderedMatch.get(4).getAwayScore())
         );
     }
+
+    @Test
+    @DisplayName("Given matches, when finish a match and update another match score, then should be in correct order")
+    void givenMatches_whenFinishMatchAndUpdateScore_thenShouldBeInCorrectOrder() {
+        int firstMatch = scoreBoard.startMatch(new Team("Mexico"), new Team("Canada"));
+        int secondMatch = scoreBoard.startMatch(new Team("Spain"), new Team("Brazil"));
+        int thirdMatch = scoreBoard.startMatch(new Team("Germany"), new Team("France"));
+        int fourthMatch = scoreBoard.startMatch(new Team("Uruguay"), new Team("Italy"));
+        int fifthMatch = scoreBoard.startMatch(new Team("Argentina"), new Team("Australia"));
+        scoreBoard.updateScore(firstMatch, 1, 1);
+        scoreBoard.updateScore(thirdMatch, 2, 2);
+        scoreBoard.updateScore(fourthMatch, 6, 6);
+        scoreBoard.updateScore(secondMatch, 10, 2);
+        scoreBoard.updateScore(fifthMatch, Integer.MAX_VALUE, 1);
+        scoreBoard.finishMatch(thirdMatch);
+        scoreBoard.updateScore(fourthMatch, -1, -1);
+        scoreBoard.updateScore(firstMatch, 1, Integer.MAX_VALUE);
+
+        List<Match> orderedMatch = scoreBoard.getSummaryOfMatches();
+
+        assertAll(
+                () -> assertNotNull(orderedMatch),
+                () -> assertEquals(4, orderedMatch.size()),
+                () -> assertEquals("Argentina", orderedMatch.get(0).getHomeTeam().getName()),
+                () -> assertEquals("Australia", orderedMatch.get(0).getAwayTeam().getName()),
+                () -> assertEquals(Integer.MAX_VALUE, orderedMatch.get(0).getHomeScore()),
+                () -> assertEquals(1, orderedMatch.get(0).getAwayScore()),
+                () -> assertEquals("Mexico", orderedMatch.get(1).getHomeTeam().getName()),
+                () -> assertEquals("Canada", orderedMatch.get(1).getAwayTeam().getName()),
+                () -> assertEquals(1, orderedMatch.get(1).getHomeScore()),
+                () -> assertEquals(Integer.MAX_VALUE, orderedMatch.get(1).getAwayScore()),
+                () -> assertEquals("Spain", orderedMatch.get(3).getHomeTeam().getName()),
+                () -> assertEquals("Brazil", orderedMatch.get(3).getAwayTeam().getName()),
+                () -> assertEquals(10, orderedMatch.get(3).getHomeScore()),
+                () -> assertEquals(2, orderedMatch.get(3).getAwayScore())
+        );
+    }
+
 }

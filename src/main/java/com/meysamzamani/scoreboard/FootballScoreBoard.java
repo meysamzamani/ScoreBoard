@@ -34,6 +34,6 @@ public class FootballScoreBoard implements ScoreBoard {
     public List<Match> getSummaryOfMatches() {
         List<Match> orderedMatches = new ArrayList<>(matches.values());
         Collections.sort(orderedMatches);
-        return orderedMatches;
+        return Collections.unmodifiableList(orderedMatches);
     }
 }
