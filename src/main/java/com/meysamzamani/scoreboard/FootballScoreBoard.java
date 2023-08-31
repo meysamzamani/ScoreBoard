@@ -1,9 +1,6 @@
 package com.meysamzamani.scoreboard;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class FootballScoreBoard implements ScoreBoard {
 
@@ -16,7 +13,7 @@ public class FootballScoreBoard implements ScoreBoard {
     @Override
     public int startMatch(Team homeTeam, Team awayTeam) {
         int matchId = matches.size() + 1;
-        matches.put(matchId, new Match(homeTeam, awayTeam));
+        matches.put(matchId, new Match(matchId, homeTeam, awayTeam));
         return matchId;
     }
 
@@ -36,6 +33,7 @@ public class FootballScoreBoard implements ScoreBoard {
     @Override
     public List<Match> getSummaryOfMatches() {
         List<Match> orderedMatches = new ArrayList<>(matches.values());
+        Collections.sort(orderedMatches);
         return orderedMatches;
     }
 }
