@@ -5,14 +5,15 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-public class MatchComparatorTest {
+
+class MatchComparatorTest {
 
     private MatchComparator comparator;
     private Match match1;
     private Match match2;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         comparator = new MatchComparator();
         Team homeTeam = new Team("Home-Team");
         Team awayTeam = new Team("Away-Team");
@@ -21,12 +22,20 @@ public class MatchComparatorTest {
     }
 
     @Test
-    @DisplayName("Once score updated, then compare must be equal to zero")
-    public void givenMatches_whenScoreUpdated_thenShouldEqualZero() {
+    @DisplayName("Once score updated and objects are equal, then compare must be equal to zero")
+    void givenMatches_whenScoreUpdatedAndEqualWithCompareTo_thenShouldEqualZero() {
         match1.updateScore(2, 1);
-        match2.updateScore(2, 1);
+        match2 = match1;
         assertEquals(0, comparator.compare(match1, match2));
     }
 
+    @Test
+    @DisplayName("Given Null matches, when compared, then should NullPointerException thrown")
+    void givenNullMatches_whenCompared_thenShouldNullPointerExceptionThrown() {
+        NullPointerException thrown = assertThrows(NullPointerException.class, () -> {
+            comparator.compare(null, null);
+        }, "Compared object should be not null");
+        assertEquals("Compared object should be not null", thrown.getMessage());
+    }
 
 }
