@@ -8,7 +8,7 @@ public class Team {
         if (name != null) {
             this.name = name;
         } else {
-            throw new NullPointerException("Name should be not null");
+            throw new IllegalArgumentException("Name should be not null");
         }
     }
 
